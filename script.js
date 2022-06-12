@@ -1,10 +1,12 @@
 "using strict";
 import { spinWheelDegrees } from "./codes/categoryDegree.js";
+import { backgroundType } from "./codes/backgroundType.js";
 
-//SECTIONS
+//SECTIONS && CONTAINERS
 const homeSection = document.getElementById("home");
 const spinWheelSection = document.getElementById("spinner");
 const questionSection = document.getElementById("question");
+const questionTypeContainer = document.querySelector(".question-type");
 
 //BUTTONS && ELEMENTS
 const playButtonEl = document.querySelector(".play-button");
@@ -13,6 +15,7 @@ const spinWheelEl = document.querySelector(".wheel");
 
 //LABELS & TEXTS
 const spinWheelTextEl = document.querySelector(".spin-wheel-text");
+const questionTypeEl = document.querySelector(".question-type-text");
 
 //HIDE HOME MENU SHOW WHEEL SECTION
 playButtonEl.addEventListener("click", () => {
@@ -44,16 +47,23 @@ spinButtonEl.addEventListener("click", () => {
     spinWheelTextEl.textContent = `You will be asked ${spinWheelDegrees[
       randomNumberForCategory
     ].questionType.toUpperCase()} question.`;
-  }, 5000);
+  }, 2000);
 
   //CHANGE THE MESSAGE AND FETCH THE QUESTION FROM THE API
   setTimeout(() => {
     spinWheelTextEl.textContent = "Get Ready...";
-  }, 7000);
+  }, 3000);
 
   //CHANGE THE UI TO QUESTION SECTION
   setTimeout(() => {
     spinWheelSection.style.display = "none";
     questionSection.style.display = "block";
-  }, 9000);
+
+    //CHANGE QUESTION TYPE BACKGROUND AND TEXT
+    backgroundType(
+      spinWheelDegrees[randomNumberForCategory].questionType,
+      questionTypeContainer,
+      questionTypeEl
+    );
+  }, 4000);
 });
