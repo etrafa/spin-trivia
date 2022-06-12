@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+#spinner {
+  display: none;
+}
+
+.spinner-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #885eb4;
+  padding: 2rem;
+}
+
+.spin-wheel-text {
+  font-size: 24px;
+  font-family: "Press Start 2P", cursive;
+  padding: 4rem 2rem 1rem 0;
+  max-width: 640px;
+  line-height: 38px;
+  text-align: center;
+  color: #fff;
+}
+
+.wheel-button-container {
+  position: relative;
+}
+
+.wheel {
+  display: block;
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.spinner {
+  position: absolute;
+  width: 48px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 512px) {
+  .spinner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .spin-wheel-text {
+    font-size: 28px;
+  }
+
+  .wheel {
+    max-width: 420px;
+  }
+}
+
+/* SPIN WHEEL ANIMATION*/
+.spinner-wheel-active {
+  animation: rotation 5s infinite linear;
+}
+
+.spinner-wheel-active-fast {
+  animation: rotation 0.4s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

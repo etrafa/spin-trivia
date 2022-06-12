@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+
+#question {
+  display: none;
+}
+
+.section_question {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #3f454e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.question-type {
+  width: 100%;
+  background-color: red;
+  height: 80px;
+  text-align: center;
+  padding-top: 6px;
+  font-size: 60px;
+  font-family: "Nunito", sans-serif;
+}
+
+.question-text {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+  min-height: 240px;
+  margin: 3rem auto;
+  z-index: 1;
+}
+
+.question-text,
+.question-text:before,
+.question-text:after {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1), 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.question-text:before,
+.question-text:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: rotateZ(2.5deg);
+  -o-transform: rotate(2.5deg);
+  transform: rotateZ(2.5deg);
+  z-index: -1;
+}
+
+.question-text:after {
+  -webkit-transform: rotateZ(-2.5deg);
+  -o-transform: rotate(-2.5deg);
+  transform: rotateZ(-2.5deg);
+}
+
+.question-options {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.question-options button {
+  width: 90%;
+  height: 50px;
+  margin: 0.5rem auto;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  box-shadow: 5px 5px #888888;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 992px) {
+  .question-text {
+    margin-top: 3rem;
+  }
+  .question-options {
+    display: grid;
+    width: 50%;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 5rem;
+    gap: 1rem;
+  }
+  .question-options button {
+    max-width: 320px;
+  }
+}

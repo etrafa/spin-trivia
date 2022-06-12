@@ -1,0 +1,68 @@
+.how-to-play-modal {
+  display: none;
+}
+
+.how-to-play-modal-active {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.modal-inner {
+  width: 90%;
+  height: auto;
+  background-color: #fff;
+  margin: 2rem auto;
+  font-family: "Press Start 2P", cursive;
+  border-radius: 20px;
+  position: relative;
+  color: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.modal-inner h1 {
+  text-align: center;
+  padding-top: 5rem;
+  text-decoration: underline;
+}
+
+.modal-inner ul {
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.modal-inner ul li {
+  margin: 1rem 0;
+  line-height: 30px;
+  font-size: 12px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.modal-inner svg {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.modal-inner svg:hover {
+  color: #885eb4;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 560px) {
+  .modal-inner {
+    max-width: 800px;
+  }
+}
