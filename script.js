@@ -7,6 +7,8 @@ const homeSection = document.getElementById("home");
 const spinWheelSection = document.getElementById("spinner");
 const questionSection = document.getElementById("question");
 const questionTypeContainer = document.querySelector(".question-type");
+const scoreBoardContainer = document.querySelector(".score-board");
+const optionsContainer = document.querySelector(".question-options");
 
 //BUTTONS && ELEMENTS
 const playButtonEl = document.querySelector(".play-button");
@@ -16,12 +18,22 @@ const optionOne = document.querySelector(".option-one");
 const optionTwo = document.querySelector(".option-two");
 const optionThree = document.querySelector(".option-three");
 const optionFour = document.querySelector(".option-four");
+const nextButtonEl = document.querySelector(".next-button");
 
 //LABELS & TEXTS
 const spinWheelTextEl = document.querySelector(".spin-wheel-text");
 const questionTypeEl = document.querySelector(".question-type-text");
 const questionTextEl = document.querySelector(".question-text");
-const correctWrongTextEl = document.querySelector(".correct-wrong-text");
+const correctWrongTextContainer = document.querySelector(".correct-wrong-text");
+const correctTextEl = document.querySelector(".correct-text");
+const incorrectTextEl = document.querySelector(".incorrect-text");
+const questionLeftTextEl = document.querySelector(".question-left-text");
+
+//VARIABLES
+let questionCorrectAnswer;
+let userRightAnswerCounter = 0;
+let userWrongAnswerCounter = 0;
+let userLivesLeft = 10;
 
 //HIDE HOME MENU SHOW WHEEL SECTION
 playButtonEl.addEventListener("click", () => {
@@ -75,8 +87,6 @@ spinButtonEl.addEventListener("click", () => {
   }, 4000);
 });
 
-let questionCorrectAnswer;
-
 //FETCH QUESTION FROM API
 const fetchQuestion = async (category) => {
   const data = await fetch(
@@ -109,19 +119,34 @@ const fetchQuestion = async (category) => {
 
 //CHECK ANSWER WHEN USER SELECT AN OPTION
 const checkAnswer = (targetButton) => {
+  //IF ANSWER IS CORRECT
   if (targetButton.textContent === questionCorrectAnswer) {
+    userRightAnswerCounter = userRightAnswerCounter + 1;
+    userLivesLeft = userLivesLeft - 1;
     questionTextEl.style.display = "none";
-    correctWrongTextEl.style.display = "block";
-    correctWrongTextEl.textContent = "CORRECT";
-    correctWrongTextEl.classList.add("correct-wrong-text-true");
+    correctWrongTextContainer.style.display = "block";
+    correctWrongTextContainer.textContent = "CORRECT";
+    correctWrongTextContainer.classList.add("correct-wrong-text-true");
     targetButton.style.backgroundColor = "#00ff00";
     disableClickEvent();
-  } else {
+    setTimeout(() => {
+      showResult();
+    }, 2000);
+  }
+  //! IF ANSWER IS NOT CORRECT
+  else {
+    userWrongAnswerCounter = userWrongAnswerCounter + 1;
+    userLivesLeft = userLivesLeft - 1;
     questionTextEl.style.display = "none";
-    correctWrongTextEl.style.display = "block";
-    correctWrongTextEl.textContent = "WRONG";
-    correctWrongTextEl.classList.add("correct-wrong-text-false");
+    correctWrongTextContainer.style.display = "block";
+    correctWrongTextContainer.textContent = "WRONG";
+    correctWrongTextContainer.classList.add("correct-wrong-text-false");
+    targetButton.style.backgroundColor = "#ff0000";
+    targetButton.style.boxShadow = "none";
     disableClickEvent();
+    setTimeout(() => {
+      showResult();
+    }, 2000);
   }
 };
 
@@ -158,14 +183,29 @@ const showCorrectAnswer = () => {
   if (optionOne.textContent === questionCorrectAnswer) {
     optionOne.classList.add("correct-answer-animation");
     optionOne.style.backgroundColor = "#00ff00";
-  } else if (optionTwo.textContent === correctAnswer) {
+    optionOne.style.boxShadow = "none";
+  } else if (optionTwo.textContent === questionCorrectAnswer) {
     optionTwo.classList.add("correct-answer-animation");
     optionTwo.style.backgroundColor = "#00ff00";
-  } else if (optionThree.textContent === correctAnswer) {
+    optionTwo.style.boxShadow = "none";
+  } else if (optionThree.textContent === questionCorrectAnswer) {
     optionThree.classList.add("correct-answer-animation");
     optionThree.style.backgroundColor = "#00ff00";
-  } else if (optionFour.textContent === correctAnswer) {
+    optionThree.style.boxShadow = "none";
+  } else if (optionFour.textContent === questionCorrectAnswer) {
     optionFour.classList.add("correct-answer-animation");
     optionFour.style.backgroundColor = "#00ff00";
+    optionFour.style.boxShadow = "none";
   }
+};
+
+//SHOW RESULT
+const showResult = () => {
+  questionTypeEl.textContent = "RESULTS";
+  correctWrongTextContainer.style.display = "none";
+  correctTextEl.textContent = userRightAnswerCounter;
+  incorrectTextEl.textContent = userWrongAnswerCounter;
+  questionLeftTextEl.textContent = userLivesLeft;
+  scoreBoardContainer.style.display = "block";
+  optionsContainer.style.display = "none";
 };

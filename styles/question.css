@@ -1,8 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
 
-#question {
+/* #question {
   display: none;
+} */
+
+.question-options {
+  display: none !important;
 }
 
 .section_question {
@@ -148,6 +152,25 @@
   }
 }
 
+.menu-options button {
+  display: block;
+  width: 90%;
+  height: 50px;
+  margin: 1rem auto 5rem auto;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+}
+
+.menu-options button:hover {
+  background-color: #d1d1d1;
+  transition: 0.2sec;
+}
+
 @media screen and (min-width: 992px) {
   .question-text-container {
     margin-top: 3rem;
@@ -161,6 +184,9 @@
     gap: 1rem;
   }
   .question-options button {
+    max-width: 320px;
+  }
+  .menu-options button {
     max-width: 320px;
   }
 }
