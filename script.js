@@ -130,6 +130,7 @@ const checkAnswer = (targetButton) => {
     targetButton.classList.add("question-options-correct");
     disableClickEvent();
     setTimeout(() => {
+      correctWrongTextContainer.classList.remove("correct-wrong-text-true");
       showResult();
     }, 2000);
   }
@@ -146,6 +147,7 @@ const checkAnswer = (targetButton) => {
     disableClickEvent();
     setTimeout(() => {
       targetButton.classList.remove("question-options-wrong");
+      correctWrongTextContainer.classList.remove("correct-wrong-text-false");
       showResult();
     }, 2000);
   }
@@ -210,7 +212,7 @@ nextButtonEl.addEventListener("click", () => {
 
 //NEXT QUESTION SET ALL THE SETTINGS TO DEFAULT
 const resetSettings = () => {
-  questionTypeContainer.style.display = "none";
+  questionSection.style.display = "none";
   spinWheelSection.style.display = "block";
   spinWheelTextEl.textContent = "SPIN THE WHEEL TO SEE QUESTION TYPE";
   spinButtonEl.style.pointerEvents = "auto";
@@ -239,3 +241,13 @@ const resetSettings = () => {
     "question-options-correct"
   );
 };
+
+//WHEN USER ANSWERS ALL THE QUESTION SHOW FINAL RESULT AND GO TO MAIN MENU
+const gameOver = () => {
+  if (userLivesLeft < 0) {
+    console.log("game over");
+  }
+  console.log(userLivesLeft);
+};
+
+gameOver();
