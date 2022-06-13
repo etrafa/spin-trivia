@@ -22,26 +22,34 @@
   padding-top: 6px;
   font-size: 60px;
   font-family: "Nunito", sans-serif;
+  color: #fff;
 }
 
-.question-text {
+.question-text-container {
   position: relative;
   width: 90%;
   max-width: 700px;
   min-height: 240px;
   margin: 3rem auto;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  text-align: center;
 }
 
-.question-text,
-.question-text:before,
-.question-text:after {
+.question-text-container,
+.question-text-container:before,
+.question-text-container:after {
   background-color: #fff;
   border: 1px solid #ccc;
   box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1), 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
-.question-text:before,
-.question-text:after {
+.question-text-container:before,
+.question-text-container:after {
   content: "";
   position: absolute;
   left: 0;
@@ -54,7 +62,7 @@
   z-index: -1;
 }
 
-.question-text:after {
+.question-text-container:after {
   -webkit-transform: rotateZ(-2.5deg);
   -o-transform: rotate(-2.5deg);
   transform: rotateZ(-2.5deg);
@@ -74,10 +82,74 @@
   text-align: center;
   box-shadow: 5px 5px #888888;
   cursor: pointer;
+  font-size: 16px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+}
+
+.question-options button:hover {
+  background-color: #885eb4;
+  box-shadow: none;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.correct-wrong-text {
+  display: none;
+}
+
+.correct-wrong-text-true {
+  font-size: 60px;
+  color: #00ff00;
+  transform: rotate(-30deg);
+}
+.correct-wrong-text-false {
+  font-size: 60px;
+  color: #ff0000;
+  transform: rotate(-30deg);
+}
+
+.score-board {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.score-board p {
+  margin: 1rem;
+}
+
+.correct-text {
+  color: #00ff00;
+  margin-left: 1rem;
+}
+
+.incorrect-text {
+  color: #ff0000;
+  margin-left: 1rem;
+}
+
+.question-left-text {
+  color: #885eb4;
+  margin-left: 1rem;
+}
+
+.correct-answer-animation {
+  animation: correctAnswer 0.2s 10;
+  background-color: #00ff00;
+}
+@keyframes correctAnswer {
+  from {
+    background-color: #00ff00;
+  }
+  to {
+    background-color: #fff;
+  }
 }
 
 @media screen and (min-width: 992px) {
-  .question-text {
+  .question-text-container {
     margin-top: 3rem;
   }
   .question-options {

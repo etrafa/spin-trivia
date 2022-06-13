@@ -19,7 +19,17 @@
 .menu-banner {
   max-width: 300px;
   margin: 2rem auto;
-  transform: rotate(20deg);
+  transform: rotate(-20deg);
+  animation: changeLaura 2s steps(3) infinite;
+}
+
+@keyframes changeLaura {
+  from {
+    transform: rotate(-20deg);
+  }
+  to {
+    transform: rotate(40deg);
+  }
 }
 
 .menu-container h1 {

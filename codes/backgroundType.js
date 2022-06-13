@@ -11,7 +11,7 @@ export const backgroundType = (questionType, container, questionText) => {
     container.style.backgroundColor = "#D9534F";
   } else if (questionType === "sports") {
     container.style.backgroundColor = "#DF691A";
-  } else if (questionType === "randomly") {
+  } else if (questionType === "random") {
     container.style.backgroundColor = `#684399`;
   }
   questionText.textContent = questionType.toUpperCase();
