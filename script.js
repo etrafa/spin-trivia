@@ -76,8 +76,8 @@ spinButtonEl.addEventListener("click", () => {
   //CHANGE THE UI TO QUESTION SECTION
   setTimeout(() => {
     spinWheelSection.style.display = "none";
+    questionTypeContainer.style.display = "block";
     questionSection.style.display = "block";
-
     //CHANGE QUESTION TYPE BACKGROUND AND TEXT
     backgroundType(
       spinWheelDegrees[randomNumberForCategory].questionType,
@@ -127,7 +127,7 @@ const checkAnswer = (targetButton) => {
     correctWrongTextContainer.style.display = "block";
     correctWrongTextContainer.textContent = "CORRECT";
     correctWrongTextContainer.classList.add("correct-wrong-text-true");
-    targetButton.style.backgroundColor = "#00ff00";
+    targetButton.classList.add("question-options-correct");
     disableClickEvent();
     setTimeout(() => {
       showResult();
@@ -141,10 +141,11 @@ const checkAnswer = (targetButton) => {
     correctWrongTextContainer.style.display = "block";
     correctWrongTextContainer.textContent = "WRONG";
     correctWrongTextContainer.classList.add("correct-wrong-text-false");
-    targetButton.style.backgroundColor = "#ff0000";
+    targetButton.classList.add("question-options-wrong");
     targetButton.style.boxShadow = "none";
     disableClickEvent();
     setTimeout(() => {
+      targetButton.classList.remove("question-options-wrong");
       showResult();
     }, 2000);
   }
@@ -182,20 +183,12 @@ const disableClickEvent = () => {
 const showCorrectAnswer = () => {
   if (optionOne.textContent === questionCorrectAnswer) {
     optionOne.classList.add("correct-answer-animation");
-    optionOne.style.backgroundColor = "#00ff00";
-    optionOne.style.boxShadow = "none";
   } else if (optionTwo.textContent === questionCorrectAnswer) {
     optionTwo.classList.add("correct-answer-animation");
-    optionTwo.style.backgroundColor = "#00ff00";
-    optionTwo.style.boxShadow = "none";
   } else if (optionThree.textContent === questionCorrectAnswer) {
     optionThree.classList.add("correct-answer-animation");
-    optionThree.style.backgroundColor = "#00ff00";
-    optionThree.style.boxShadow = "none";
   } else if (optionFour.textContent === questionCorrectAnswer) {
     optionFour.classList.add("correct-answer-animation");
-    optionFour.style.backgroundColor = "#00ff00";
-    optionFour.style.boxShadow = "none";
   }
 };
 
@@ -208,4 +201,41 @@ const showResult = () => {
   questionLeftTextEl.textContent = userLivesLeft;
   scoreBoardContainer.style.display = "block";
   optionsContainer.style.display = "none";
+  nextButtonEl.style.display = "block";
+};
+
+nextButtonEl.addEventListener("click", () => {
+  resetSettings();
+});
+
+//NEXT QUESTION SET ALL THE SETTINGS TO DEFAULT
+const resetSettings = () => {
+  questionTypeContainer.style.display = "none";
+  spinWheelSection.style.display = "block";
+  spinWheelTextEl.textContent = "SPIN THE WHEEL TO SEE QUESTION TYPE";
+  spinButtonEl.style.pointerEvents = "auto";
+  scoreBoardContainer.style.display = "none";
+  questionTextEl.style.display = "block";
+  nextButtonEl.style.display = "none";
+  optionsContainer.style.display = "grid";
+  optionOne.style.pointerEvents = "auto";
+  optionTwo.style.pointerEvents = "auto";
+  optionThree.style.pointerEvents = "auto";
+  optionFour.style.pointerEvents = "auto";
+  optionOne.classList.remove(
+    "correct-answer-animation",
+    "question-options-correct"
+  );
+  optionTwo.classList.remove(
+    "correct-answer-animation",
+    "question-options-correct"
+  );
+  optionThree.classList.remove(
+    "correct-answer-animation",
+    "question-options-correct"
+  );
+  optionFour.classList.remove(
+    "correct-answer-animation",
+    "question-options-correct"
+  );
 };
