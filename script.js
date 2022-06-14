@@ -33,7 +33,7 @@ const questionLeftTextEl = document.querySelector(".question-left-text");
 let questionCorrectAnswer;
 let userRightAnswerCounter = 0;
 let userWrongAnswerCounter = 0;
-let userLivesLeft = 10;
+let userLivesLeft = 1;
 
 //HIDE HOME MENU SHOW WHEEL SECTION
 playButtonEl.addEventListener("click", () => {
@@ -144,6 +144,7 @@ const checkAnswer = (targetButton) => {
     setTimeout(() => {
       correctWrongTextContainer.classList.remove("correct-wrong-text-true");
       showResult();
+      gameOver();
     }, 2000);
   }
   //! IF ANSWER IS NOT CORRECT
@@ -161,6 +162,7 @@ const checkAnswer = (targetButton) => {
       targetButton.classList.remove("question-options-wrong");
       correctWrongTextContainer.classList.remove("correct-wrong-text-false");
       showResult();
+      gameOver();
     }, 2000);
   }
 };
@@ -219,7 +221,12 @@ const showResult = () => {
 };
 
 nextButtonEl.addEventListener("click", () => {
-  resetSettings();
+  if (userLivesLeft !== 0) {
+    resetSettings();
+  } else {
+    directMainMenu();
+    resetSettings();
+  }
 });
 
 //NEXT QUESTION SET ALL THE SETTINGS TO DEFAULT
@@ -256,11 +263,24 @@ const resetSettings = () => {
 
 //WHEN USER ANSWERS ALL THE QUESTION SHOW FINAL RESULT AND GO TO MAIN MENU
 const gameOver = () => {
-  if (userLivesLeft < 0) {
-    console.log("game over");
+  if (userLivesLeft === 0) {
+    questionTypeEl.textContent = "GAME OVER";
+    nextButtonEl.textContent = "MAIN MENU";
+    nextButtonEl.style.backgroundColor = "#000";
+    nextButtonEl.style.color = "#fff";
+    console.log(userLivesLeft);
   }
 };
 
-fetchQuestion(spinWheelDegrees[6].category);
-
-gameOver();
+//WHEN GAME IS OVER GO TO MAIN MENU AND RESET GAME SETTINGS
+const directMainMenu = () => {
+  userLivesLeft = 10;
+  userRightAnswerCounter = 0;
+  userWrongAnswerCounter = 0;
+  questionSection.style.display = "none";
+  homeSection.style.display = "block";
+  nextButtonEl.style.display = "block";
+  nextButtonEl.textContent = "Next";
+  nextButtonEl.style.backgroundColor = "#fff";
+  nextButtonEl.style.color = "#000";
+};
