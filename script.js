@@ -87,6 +87,18 @@ spinButtonEl.addEventListener("click", () => {
   }, 4000);
 });
 
+//CONVERT QUESTION TO HUMAN-READABLE FORMAT
+const readableFormat = (word) => {
+  word
+    .replaceAll("&quot;", `"`)
+    .replaceAll("&#039;", "'")
+    .replaceAll("&shy;", "-")
+    .replaceAll("&ldquo;", "“")
+    .replaceAll("&rdquo;", "”");
+
+  return word;
+};
+
 //FETCH QUESTION FROM API
 const fetchQuestion = async (category) => {
   const data = await fetch(
@@ -96,9 +108,11 @@ const fetchQuestion = async (category) => {
   //CHOSE A RANDOM QUESTION FROM API
   let randomQuestion = await res.results[Math.trunc(Math.random() * 9 + 1)];
 
-  console.log(randomQuestion);
+  //CHANGE QUESTION TO HUMAN READABLE FORMAT
+  let randomQuestionReadable = readableFormat(randomQuestion.question);
+
   //SHOW THE QUESTION ON UI
-  questionTextEl.textContent = randomQuestion.question;
+  questionTextEl.textContent = randomQuestionReadable;
 
   // STORE ALL THE ANSWERS AND SHUFFLE THEM
   const allAnswers = [
@@ -108,13 +122,11 @@ const fetchQuestion = async (category) => {
 
   questionCorrectAnswer = randomQuestion.correct_answer;
 
-  console.log(questionCorrectAnswer);
-
   //SHOW ANSWERS ON UI
-  optionOne.textContent = allAnswers[0];
-  optionTwo.textContent = allAnswers[1];
-  optionThree.textContent = allAnswers[2];
-  optionFour.textContent = allAnswers[3];
+  optionOne.textContent = readableFormat(allAnswers[0]);
+  optionTwo.textContent = readableFormat(allAnswers[1]);
+  optionThree.textContent = readableFormat(allAnswers[2]);
+  optionFour.textContent = readableFormat(allAnswers[3]);
 };
 
 //CHECK ANSWER WHEN USER SELECT AN OPTION
@@ -247,7 +259,8 @@ const gameOver = () => {
   if (userLivesLeft < 0) {
     console.log("game over");
   }
-  console.log(userLivesLeft);
 };
+
+fetchQuestion(spinWheelDegrees[6].category);
 
 gameOver();

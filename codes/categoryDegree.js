@@ -1,4 +1,15 @@
-const randomQuestionType = Math.trunc(Math.random() * 40);
+//WHEN THE WHEEL CHOOSE RANDOM, CHOOSE A RANDOM CATEGORY
+
+let randomQuestionCategory = [];
+for (let num = 9; num <= 32; num++) {
+  randomQuestionCategory.push(num);
+}
+// const randomQuestionType = Math.trunc(Math.random() * 40);
+
+const randomQuestionType =
+  randomQuestionCategory[
+    Math.trunc(Math.random() * randomQuestionCategory.length)
+  ];
 
 export const spinWheelDegrees = [
   { degree: 25, questionType: "science", category: 17 },
