@@ -1,6 +1,7 @@
 "using strict";
 import { spinWheelDegrees } from "./codes/categoryDegree.js";
 import { backgroundType } from "./codes/backgroundType.js";
+import { musicCounter, correctAnswerAudio } from "./codes/music.js";
 
 //SECTIONS && CONTAINERS
 const homeSection = document.getElementById("home");
@@ -39,6 +40,7 @@ let userLivesLeft = 1;
 playButtonEl.addEventListener("click", () => {
   homeSection.style.display = "none";
   spinWheelSection.style.display = "block";
+  console.log(musicCounter);
 });
 
 //WHEEL THE SPINNER WHEN PRESS THE BUTTON
@@ -89,12 +91,7 @@ spinButtonEl.addEventListener("click", () => {
 
 //CONVERT QUESTION TO HUMAN-READABLE FORMAT
 const readableFormat = (word) => {
-  word
-    .replaceAll("&quot;", `"`)
-    .replaceAll("&#039;", "'")
-    .replaceAll("&shy;", "-")
-    .replaceAll("&ldquo;", "“")
-    .replaceAll("&rdquo;", "”");
+  word;
 
   return word;
 };
@@ -109,7 +106,12 @@ const fetchQuestion = async (category) => {
   let randomQuestion = await res.results[Math.trunc(Math.random() * 9 + 1)];
 
   //CHANGE QUESTION TO HUMAN READABLE FORMAT
-  let randomQuestionReadable = readableFormat(randomQuestion.question);
+  let randomQuestionReadable = randomQuestion.question
+    .replaceAll("&quot;", `"`)
+    .replaceAll("&#039;", "'")
+    .replaceAll("&shy;", "-")
+    .replaceAll("&ldquo;", "“")
+    .replaceAll("&rdquo;", "”");
 
   //SHOW THE QUESTION ON UI
   questionTextEl.textContent = randomQuestionReadable;
@@ -123,10 +125,30 @@ const fetchQuestion = async (category) => {
   questionCorrectAnswer = randomQuestion.correct_answer;
 
   //SHOW ANSWERS ON UI
-  optionOne.textContent = readableFormat(allAnswers[0]);
-  optionTwo.textContent = readableFormat(allAnswers[1]);
-  optionThree.textContent = readableFormat(allAnswers[2]);
-  optionFour.textContent = readableFormat(allAnswers[3]);
+  optionOne.textContent = allAnswers[0]
+    .replaceAll("&quot;", `"`)
+    .replaceAll("&#039;", "'")
+    .replaceAll("&shy;", "-")
+    .replaceAll("&ldquo;", "“")
+    .replaceAll("&rdquo;", "”");
+  optionTwo.textContent = allAnswers[1]
+    .replaceAll("&quot;", `"`)
+    .replaceAll("&#039;", "'")
+    .replaceAll("&shy;", "-")
+    .replaceAll("&ldquo;", "“")
+    .replaceAll("&rdquo;", "”");
+  optionThree.textContent = allAnswers[2]
+    .replaceAll("&quot;", `"`)
+    .replaceAll("&#039;", "'")
+    .replaceAll("&shy;", "-")
+    .replaceAll("&ldquo;", "“")
+    .replaceAll("&rdquo;", "”");
+  optionFour.textContent = allAnswers[3]
+    .replaceAll("&quot;", `"`)
+    .replaceAll("&#039;", "'")
+    .replaceAll("&shy;", "-")
+    .replaceAll("&ldquo;", "“")
+    .replaceAll("&rdquo;", "”");
 };
 
 //CHECK ANSWER WHEN USER SELECT AN OPTION
@@ -140,6 +162,7 @@ const checkAnswer = (targetButton) => {
     correctWrongTextContainer.textContent = "CORRECT";
     correctWrongTextContainer.classList.add("correct-wrong-text-true");
     targetButton.classList.add("question-options-correct");
+
     disableClickEvent();
     setTimeout(() => {
       correctWrongTextContainer.classList.remove("correct-wrong-text-true");
