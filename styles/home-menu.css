@@ -12,7 +12,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -40,13 +40,13 @@
 .menu-container h1 {
   font-family: "Press Start 2P", cursive;
   color: #fff;
-  width: 100%;
   font-size: 60px;
-  z-index: 1;
+
+  line-height: 120px;
 }
 
 .menu-button-container {
-  margin-top: 8rem;
+  margin-top: 0.5rem;
   display: grid;
   grid-template-columns: 0.5fr 0.5fr;
   grid-template-areas: "play play" "music how-to-play";
@@ -102,6 +102,10 @@
 }
 
 @media only screen and (min-width: 560px) {
+  .menu-container {
+    justify-content: center;
+    align-items: center;
+  }
   .menu-banner {
     max-width: 300px;
   }
