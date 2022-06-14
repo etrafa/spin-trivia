@@ -13,10 +13,14 @@ export let musicCounter = 0;
 const gameAudio = new Audio();
 export const correctAnswerAudio = new Audio();
 export const wrongAnswerAudio = new Audio();
+export const spinnerAudio = new Audio();
+export const buttonAudio = new Audio();
 
 gameAudio.src = "./assets/sounds/menu.mp3";
 correctAnswerAudio.src = "./assets/sounds/correct-answer-sound.wav";
 wrongAnswerAudio.src = "./assets/sounds/wrong-answer-sound.mp3";
+spinnerAudio.src = "./assets/sounds/wheel-spin.wav";
+buttonAudio.src = "./assets/sounds/clickButton.wav";
 
 //TURN ON / OFF THE MUSIC
 musicButtonEl.addEventListener("click", () => {

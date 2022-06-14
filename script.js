@@ -1,7 +1,13 @@
 "using strict";
 import { spinWheelDegrees } from "./codes/categoryDegree.js";
 import { backgroundType } from "./codes/backgroundType.js";
-import { musicCounter, correctAnswerAudio } from "./codes/music.js";
+import {
+  musicCounter,
+  correctAnswerAudio,
+  wrongAnswerAudio,
+  spinnerAudio,
+  buttonAudio,
+} from "./codes/music.js";
 
 //SECTIONS && CONTAINERS
 const homeSection = document.getElementById("home");
@@ -40,7 +46,7 @@ let userLivesLeft = 1;
 playButtonEl.addEventListener("click", () => {
   homeSection.style.display = "none";
   spinWheelSection.style.display = "block";
-  console.log(musicCounter);
+  if (musicCounter % 2 !== 0) buttonAudio.play();
 });
 
 //WHEEL THE SPINNER WHEN PRESS THE BUTTON
@@ -53,6 +59,7 @@ spinButtonEl.addEventListener("click", () => {
 
   //DISABLE THE BUTTON SO USER CANNOT PRESS MORE THAN ONCE
   spinButtonEl.style.pointerEvents = "none";
+  if (musicCounter % 2 !== 0) spinnerAudio.play();
 
   //START SPINNING THE WHEEL
   setTimeout(() => {
@@ -67,6 +74,7 @@ spinButtonEl.addEventListener("click", () => {
     spinWheelTextEl.textContent = `You will be asked ${spinWheelDegrees[
       randomNumberForCategory
     ].questionType.toUpperCase()} question.`;
+    spinnerAudio.pause();
   }, 2000);
 
   //CHANGE THE MESSAGE AND FETCH THE QUESTION FROM THE API
@@ -88,13 +96,6 @@ spinButtonEl.addEventListener("click", () => {
     );
   }, 4000);
 });
-
-//CONVERT QUESTION TO HUMAN-READABLE FORMAT
-const readableFormat = (word) => {
-  word;
-
-  return word;
-};
 
 //FETCH QUESTION FROM API
 const fetchQuestion = async (category) => {
@@ -162,7 +163,7 @@ const checkAnswer = (targetButton) => {
     correctWrongTextContainer.textContent = "CORRECT";
     correctWrongTextContainer.classList.add("correct-wrong-text-true");
     targetButton.classList.add("question-options-correct");
-
+    if (musicCounter % 2 !== 0) correctAnswerAudio.play();
     disableClickEvent();
     setTimeout(() => {
       correctWrongTextContainer.classList.remove("correct-wrong-text-true");
@@ -180,6 +181,7 @@ const checkAnswer = (targetButton) => {
     correctWrongTextContainer.classList.add("correct-wrong-text-false");
     targetButton.classList.add("question-options-wrong");
     targetButton.style.boxShadow = "none";
+    if (musicCounter % 2 !== 0) wrongAnswerAudio.play();
     disableClickEvent();
     setTimeout(() => {
       targetButton.classList.remove("question-options-wrong");
@@ -291,7 +293,6 @@ const gameOver = () => {
     nextButtonEl.textContent = "MAIN MENU";
     nextButtonEl.style.backgroundColor = "#000";
     nextButtonEl.style.color = "#fff";
-    console.log(userLivesLeft);
   }
 };
 
