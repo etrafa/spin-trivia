@@ -249,8 +249,8 @@ nextButtonEl.addEventListener("click", () => {
   if (userLivesLeft !== 0) {
     resetSettings();
   } else {
-    directMainMenu();
     resetSettings();
+    directMainMenu();
   }
 });
 
@@ -302,9 +302,11 @@ const directMainMenu = () => {
   userRightAnswerCounter = 0;
   userWrongAnswerCounter = 0;
   questionSection.style.display = "none";
+  spinWheelSection.style.display = "none";
   homeSection.style.display = "block";
   nextButtonEl.style.display = "block";
   nextButtonEl.textContent = "Next";
   nextButtonEl.style.backgroundColor = "#fff";
   nextButtonEl.style.color = "#000";
+  nextButtonEl.style.display = "none";
 };

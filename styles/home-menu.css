@@ -20,15 +20,24 @@
   max-width: 300px;
   margin: 2rem auto;
   transform: rotate(-20deg);
-  animation: changeLaura 2s steps(3) infinite;
+  animation: changeLaura 10s steps(5) infinite;
 }
 
 @keyframes changeLaura {
-  from {
+  0% {
     transform: rotate(-20deg);
   }
-  to {
-    transform: rotate(40deg);
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-20deg);
   }
 }
 

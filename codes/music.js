@@ -29,6 +29,7 @@ musicButtonEl.addEventListener("click", () => {
     musicCounter++;
     gameAudio.play();
     gameAudio.currentTime = 0;
+    gameAudio.volume = 0.4;
     gameAudio.loop = true;
     console.log("playing...");
   } else if (musicCounter % 2 !== 0) {
