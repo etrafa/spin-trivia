@@ -40,7 +40,7 @@ const questionLeftTextEl = document.querySelector(".question-left-text");
 let questionCorrectAnswer;
 let userRightAnswerCounter = 0;
 let userWrongAnswerCounter = 0;
-let userLivesLeft = 1;
+let userLivesLeft = 10;
 
 //HIDE HOME MENU SHOW WHEEL SECTION
 playButtonEl.addEventListener("click", () => {
@@ -75,13 +75,14 @@ spinButtonEl.addEventListener("click", () => {
       randomNumberForCategory
     ].questionType.toUpperCase()} question.`;
     spinnerAudio.pause();
-  }, 2000);
+    spinnerAudio.currentTime = 0;
+  }, 5000);
 
   //CHANGE THE MESSAGE AND FETCH THE QUESTION FROM THE API
   setTimeout(() => {
     spinWheelTextEl.textContent = "Get Ready...";
     fetchQuestion(spinWheelDegrees[randomNumberForCategory].category);
-  }, 3000);
+  }, 7000);
 
   //CHANGE THE UI TO QUESTION SECTION
   setTimeout(() => {
@@ -94,7 +95,7 @@ spinButtonEl.addEventListener("click", () => {
       questionTypeContainer,
       questionTypeEl
     );
-  }, 4000);
+  }, 9000);
 });
 
 //FETCH QUESTION FROM API
@@ -169,7 +170,7 @@ const checkAnswer = (targetButton) => {
       correctWrongTextContainer.classList.remove("correct-wrong-text-true");
       showResult();
       gameOver();
-    }, 2000);
+    }, 5000);
   }
   //! IF ANSWER IS NOT CORRECT
   else {
@@ -188,7 +189,7 @@ const checkAnswer = (targetButton) => {
       correctWrongTextContainer.classList.remove("correct-wrong-text-false");
       showResult();
       gameOver();
-    }, 2000);
+    }, 5000);
   }
 };
 

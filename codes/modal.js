@@ -14,5 +14,6 @@ modalButtonEl.addEventListener("click", () => {
 // CLOSE HOW TO PLAY MODAL
 closeModalButtonEl.addEventListener("click", () => {
   modalContainerEl.classList.remove("how-to-play-modal-active");
+
   if (musicCounter % 2 !== 0) buttonAudio.play();
 });
