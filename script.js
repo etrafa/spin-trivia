@@ -71,7 +71,7 @@ spinButtonEl.addEventListener("click", () => {
   setTimeout(() => {
     spinWheelEl.classList.remove("spinner-wheel-active-fast");
     spinWheelEl.style.transform = `rotate(${spinWheelDegrees[randomNumberForCategory].degree}deg)`;
-    spinWheelTextEl.textContent = `You will be asked ${spinWheelDegrees[
+    spinWheelTextEl.textContent = `You will be asked a ${spinWheelDegrees[
       randomNumberForCategory
     ].questionType.toUpperCase()} question.`;
     spinnerAudio.pause();
